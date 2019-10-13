@@ -1,0 +1,16 @@
+
+{{#each burgers}}
+{{!-- if devoured is false --}}
+    {{#unless devoured}}
+   <p>{{this.burger_name}}
+       <button class="devour">Devour</button>
+   </p> 
+   {{/unless}}
+
+    {{#if devoured}}
+        <p>{{this.burger_name}}
+            <button class="order-another">Order Another</button>
+        </p>
+    {{/if}}
+
+{{/each}}
