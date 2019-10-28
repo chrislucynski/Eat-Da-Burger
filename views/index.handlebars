@@ -1,16 +1,52 @@
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <h1>It's Burger Eatin' Time!</h1>
+        <br><br>
+        <h5 class="mt-4">We specialize in making all types of burgers. Enter the name of the burger you would like to order below and
+            click submit.
+        </h5>
+        <div class="input-group input-group-lg mt-4">
+            <div class="input-group-prepend">
+                <button class="input-group-text" id="add-new">Submit</button>
+            </div>
+            <input placeholder="New Burger" type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-lg">
+        </div>
+    </div>
 
-{{#each burgers}}
-{{!-- if devoured is false --}}
-    {{#unless devoured}}
-   <p>{{this.burger_name}}
-       <button class="devour">Devour</button>
-   </p> 
-   {{/unless}}
+    <div class="row mt-4">
+        <div class="col-6">
+            <h2>To Eat:</h2>
+            <br><br>
+            {{#each burgers}}
+            {{!-- if devoured is false --}}
+            {{#unless devoured}}
+            <div class="burger-div">
+                <p id="{{id}}">{{this.burger_name}}
+                    <button id="{{id}}" class="devour">Devour</button>
+                </p>
+            </div>
+        </div>
+        <div class="col-6">
+            <h2>Eaten:</h2> 
+            <br><br>   
+            {{/unless}}
+            {{/each}}
 
-    {{#if devoured}}
-        <p>{{this.burger_name}}
-            <button class="order-another">Order Another</button>
-        </p>
-    {{/if}}
+            {{#each burgers}}
+            {{#if devoured}}
+            <div class="burger-div">
+                <p id="{{id}}">{{this.burger_name}}
+                    <button id="{{id}}" class="order-another">Order Another</button>
+                    {{!-- <button id="{{burger_name}}" class="delete">Delete</button> --}}
+                </p>
 
-{{/each}}
+            </div>
+            {{/if}}
+
+            {{/each}}
+
+        </div>
+    </div>
+
+</div>

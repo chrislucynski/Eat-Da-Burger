@@ -1,20 +1,34 @@
 var express = require('express');
 var app = express();
-var orm = require('./config/orm')
+var orm = require('../config/orm')
 
 module.exports = function(app){
     app.get("/", function(req, res) {
-        orm.selectAll()
-        res.render("index", { burgers: data });
+        orm.selectAll(function (data){
+            res.render("index", { burgers: data });
+        })
     });
       
     app.post("/api/burgers", function(req, res) {
-        orm.insertOne()
-        // res.render("single-quote", data[0]);
+        orm.insertOne(function(data){
+            console.log("insert: " +data)
+            res.render('index', {burgers: data})
+        })
     });
       
-    app.post("/api/burgers", function(req, res) {
-        orm.updateOne()
-        res.json({ id: result.insertId });
+    app.put("/api/burgers/:id", function(req, res) {
+        orm.updateOne(function(data){
+            console.log("update: " + data)
+            // Why are we doing 'res.json()' here instead of 'res.render()'
+            res.json({ id: data.id });
+        })
     });
+    
+    // app.post("/api/burgers/:id", function(req, res) {
+    //     orm.deleteOne(function(data){
+    //         console.log("deleted: " + data)            
+    //         // Why are we doing 'res.json()' here instead of 'res.render()'
+    //         res.json({ id: res.insertId });
+    //     })
+    // });
 }
