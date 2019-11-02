@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="/assets/css/burger_style.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<title>Burger Town</title>
@@ -28,31 +29,34 @@
 		crossorigin="anonymous"></script>
 
 	<script>
-		$("#add-new").click(e => {
+		$("#add-new-btn").click(e => {
 			e.preventDefault();
-			$.ajax({
-				type: "POST",
-				url: "/api/burgers_controller",
-				data: {
-					burger_name: $("#add-new")
-						.val()
-						.trim()
-				}
-			})
-				.then(result => {
-					console.log(result);
-					$("#add-new").val("");
+			var newBurger = $('#add-new-input').val().trim()
+			console.log(newBurger)
+			if (newBurger) {
+				$.ajax({
+					method: "POST",
+					url: "/api/burgers",
+					data: {
+						burger_name: newBurger
+					}
 				})
-				.catch(error => console.log(error));
+					.then(result => {
+						console.log(result);
+						location.reload();
+					})
+					.catch(error => console.log(error));
+
+			}
 		})
 
 		$(".devour").click(e => {
 			e.preventDefault()
-			console.log('order another target')
+			console.log('devour target')
 			console.log(e.target.id);
 			$.ajax({
-				type: "PUT",
-				url: `/api/burgers/${e.target.id}`,
+				method: "PUT",
+				url: `/api/devour/${e.target.id}`,
 			}).then(result => {
 				console.log(result);
 				location.reload();
@@ -64,8 +68,21 @@
 			console.log('order another target')
 			console.log(e.target.id);
 			$.ajax({
-				type: "POST",
-				url: `/api/burgers/${e.target.id}`,
+				type: "PUT",
+				url: `/api/reorder/${e.target.id}`,
+			}).then(result => {
+				console.log(result);
+				location.reload();
+			});
+		}); 
+
+		$('.delete').click(e => {
+			e.preventDefault()
+			console.log('deleting')
+			console.log(e.target.id);
+			$.ajax({
+				type: "DELETE",
+				url: `/api/delete/${e.target.id}`,
 			}).then(result => {
 				console.log(result);
 				location.reload();
