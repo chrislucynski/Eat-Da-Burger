@@ -1,53 +1,69 @@
-<div class="container mt-4">
-    <div class="row justify-content-center">
-        <h1>It's Burger Eatin' Time!</h1>
-        <br><br>
-        <img src="../public/assets/img/burger.png" alt="burger">
-        <br><br>
-        <h5 class="mt-4">We specialize in making all types of burgers. Enter the name of the burger you would like to order below and
-            click submit.
-        </h5>
-        <div class="input-group input-group-lg mt-4">
-            <div class="input-group-prepend">
-                <button class="input-group-text" id="add-new-btn">Submit</button>
+<div id="page-wrapper">
+    <div class="jumbotron" id="jumbotron">
+        <div class="jumbo-content justify-content-center container">
+            <div class="row container justify-content-center text-white">
+                <div class="header justify-content-center">
+                    <h1 class="lead" id="title">It's Burger Eatin' Time!</h1>
+                    <br><br>
+                </div>
             </div>
-            <input id="add-new-input" placeholder="New Burger" type="text" class="form-control" aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-lg">
+            <div class="row container text-white justify-content-center">
+                <div class="sub-header ">
+                    <h5 class="mt-4 lead text-center">We specialize in making all types of burgers.</h5>
+                    <h5 class="mt-4 lead text-center">Enter the name of the burger you would like to
+                        order below and
+                        click submit.
+                    </h5>
+                </div>
+                <div class="input-group input-group-lg mt-4 col-8">
+                    <div class="input-group-prepend">
+                        <button class="input-group-text btn-success" id="add-new-btn">Submit</button>
+                    </div>
+                    <input id="add-new-input" placeholder="New Burger" type="text" class="form-control"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="row mt-4">
-        <div class="col-6">
-            <h2>To Eat:</h2>
-            <br><br>
+    <div class="container mt-4" id="content-body">
+        <div class="row mt-4">
+            <div class="col-6">
+                <div class="container rounded p-4 text-center col-8 text-white" id="to-eat">
+                    <h2>To Eat:</h2>
+                </div>
+                <br><br>
 
-            {{#each burgers}}
-            {{!-- if devoured is false --}}
-            {{#unless devoured}}
-            <div class="burger-div container mb-4 pb-1 pt-3">
-                <p id="{{this.id}}" class="lead"><strong>{{this.burger_name}}</strong>
-                    <button id="{{this.id}}" class="devour btn btn-secondary">Devour</button>
-                    <button id="{{this.id}}" class="delete btn btn-danger">Delete</button>
-                </p>
+                {{#each burgers}}
+                {{!-- if devoured is false --}}
+                {{#unless devoured}}
+                <div class="burger-div container mb-4 pb-1 pt-3">
+                    <p id="{{this.id}}" class="lead"><strong>{{this.burger_name}}</strong>
+                        <button id="{{this.id}}" class="devour btn btn-success float-right ml-2">Devour</button>
+                        <button id="{{this.id}}" class="delete btn btn-danger float-right ml-2">Delete</button>
+                    </p>
+                </div>
+                {{/unless}}
+                {{/each}}
             </div>
-            {{/unless}}
-            {{/each}}
-        </div>
-        <div class="col-6">
-            <h2>Eaten:</h2> 
-            <br><br>   
+            <div class="col-6">
+                <div class="container rounded p-4 text-center col-8 text-white" id="to-eat">
+                    <h2>Eaten:</h2>
+                </div>
+                <br><br>
 
-            {{#each burgers}}
-            {{#if devoured}}
-            <div class="burger-div container mb-4 pb-1 pt-3">
-                <p id="{{this.id}}" class="lead"><strong>{{this.burger_name}}</strong>
-                    <button id="{{this.id}}" class="order-another btn btn-primary">Order Another</button>
-                    <button id="{{this.id}}" class="delete btn btn-danger">Delete</button>
-                </p>
+                {{#each burgers}}
+                {{#if devoured}}
+                <div class="burger-div container mb-4 pb-1 pt-3">
+                    <p id="{{this.id}}" class="lead"><strong>{{this.burger_name}}</strong>
+                        <button id="{{this.id}}" class="order-another btn btn-primary float-right ml-2">Order Another</button>
+                        <button id="{{this.id}}" class="delete btn btn-danger float-right ml-2">Delete</button>
+                    </p>
+                </div>
+                {{/if}}
+                {{/each}}
             </div>
-            {{/if}}
-            {{/each}}
         </div>
+
     </div>
-
 </div>

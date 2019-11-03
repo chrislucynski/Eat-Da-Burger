@@ -1,3 +1,30 @@
 .burger-div {
     box-shadow: 4px 7px 15px -1px rgba(0,0,0,0.75);
+    background-color: antiquewhite;
+}
+
+#jumbotron {
+    background-color: #880D1E;
+
+}
+
+.jumbo-content{
+    padding: 0;
+}
+
+#title {
+    font-size: 5em;
+}
+
+#to-eat{
+    background-color: #880D1E;
+    box-shadow: 4px 7px 15px -1px rgba(0,0,0,0.75);
+
+}
+
+#page-wrapper {
+    background-image: url('/assets/img/mae-mu-I7A_pHLcQK8-unsplash.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
