@@ -4,14 +4,12 @@ var app = express();
 
 var PORT = process.env.PORT || 8080;
 
-// app.use(express.static("public"));
 app.use(express.static(__dirname + "/public"));
 
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// require('./public/assets/css/burger_style.css')(app)
 require('./controllers/burgers_controller')(app)
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
